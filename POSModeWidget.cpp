@@ -79,8 +79,14 @@ void POSModeWidget::onItemButtonClicked()
 
 	button->getItemData().decrementStock();
 
+	if (button->getItemData().getStock(button->getItemData().getName()) == 0) {
+		button->setEnabled(false);
+		ui.errorLabel->setText(QString("Out of stock!"));
+	}
+
 	ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
 	ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
+	ui.errorLabel->clear();
 
 	tableRow++;
 }
@@ -103,6 +109,15 @@ void POSModeWidget::onNewOrderButtonClicked()
 void POSModeWidget::onConfirmOrderButtonClicked()
 {
 	if (currentOrder == nullptr || currentOrder->getOrderSize() == 0) return;
+	
+	QString name = ui.nameInputBox->text();
+
+	if (name.isEmpty()) {
+		ui.errorLabel->setText(QString("Input name!"));
+		return;
+	}
+
+	currentOrder->setCustomerName(ui.nameInputBox->text().toStdString());
 
 	flashTimer->start(500);
 
@@ -111,7 +126,8 @@ void POSModeWidget::onConfirmOrderButtonClicked()
 	}
 	else {
 		OrderManager::GetInstance().addOrder(*currentOrder);
-		ui.orderDropdown->addItem(QString::number(currentOrder->getOrderID()));
+		ui.orderDropdown->addItem((QString::number(currentOrder->getOrderID()) + ": " + (QString::fromStdString(currentOrder->getCustomerName()))));
+		
 	}
 
 	ui.itemTable->clearContents();
@@ -122,6 +138,8 @@ void POSModeWidget::onConfirmOrderButtonClicked()
 
 	ui.subtotalCountText->clear();
 	ui.totalCountText->clear();
+
+	ui.nameInputBox->clear();
 
 	ui.orderDropdown->setEnabled(true);
 
@@ -142,13 +160,13 @@ void POSModeWidget::onDropdownIndexChanged(int index)
 	currentOrder = OrderManager::GetInstance().GetOrder(index);
 
 	for (int i = 0; i < currentOrder->getOrderSize();i++) {
-		QString name = QString::fromStdString(currentOrder->getItemInOrder(i).getName());
+		QString itemName = QString::fromStdString(currentOrder->getItemInOrder(i).getName());
 
 		float price = currentOrder->getItemInOrder(i).getPrice();
 
 		ui.itemTable->insertRow(i);
 
-		ui.itemTable->setItem(tableRow, 0, new QTableWidgetItem(name));
+		ui.itemTable->setItem(tableRow, 0, new QTableWidgetItem(itemName));
 		ui.itemTable->setItem(tableRow, 1, new QTableWidgetItem(QString::number(price, 'f', 2)));
 
 		ui.itemTable->resizeRowsToContents();
@@ -159,8 +177,9 @@ void POSModeWidget::onDropdownIndexChanged(int index)
 
 		tableRow++;
 	}
-		ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
-		ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
+	ui.nameInputBox->setText(QString::fromStdString(currentOrder->getCustomerName()));
+	ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
+	ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
 }
 
 void POSModeWidget::onDeletePreviousOnClick()

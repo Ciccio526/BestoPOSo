@@ -1,28 +1,10 @@
 #include "ItemData.h"
 
-ItemData::ItemData()
-{
-}
-
-ItemData::ItemData(string newName, float newPrice, int newStock)
-{
-	name = newName;
-	price = newPrice;
-	stock = newStock;
-}
-
-ItemData::~ItemData()
-{
-}
+unordered_map<std::string, int> ItemData::stockMap;
 
 string ItemData::getName()
 {
 	return name;
-}
-
-void ItemData::setName(string newName)
-{
-	name = newName;
 }
 
 float ItemData::getPrice()
@@ -30,27 +12,25 @@ float ItemData::getPrice()
 	return price;
 }
 
-void ItemData::setPrice(float newPrice)
-{
-	price = newPrice;
-}
 
-int ItemData::getStock()
+int ItemData::getStock(string itemName)
 {
-	return stock;
-}
-
-void ItemData::setStock(int newStock)
-{
-	stock = newStock;
+	if (stockMap.find(itemName) != stockMap.end()) {
+		return stockMap[itemName];
+	}
+	else {
+		return 0;
+	}
 }
 
 void ItemData::decrementStock()
 {
-	stock -= 1;
+	if (stockMap[name] >= 0) {
+		stockMap[name] -= 1;
+	}
 }
 
 QString ItemData::makeFileString()
 {
-	return QString(QString::fromStdString(name) + "," + QString::number(price, 'f', 2) + "," + QString::number(stock));
+	return QString(QString::fromStdString(name) + "," + QString::number(price, 'f', 2) + "," + QString::number(getStock(name)));
 }

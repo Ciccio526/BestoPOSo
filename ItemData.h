@@ -2,34 +2,39 @@
 #include <string>
 #include <iostream>
 #include <qstring.h>
+#include <unordered_map>
 
 using namespace std;
 
 
 class ItemData
 {
-public:
-	ItemData();
-	ItemData(string newName, float newPrice, int newStock);
-	~ItemData();
-
 private:
 	string name;
 	float price;
-	int stock;
+	static unordered_map<string, int> stockMap;
+
+public:
+	ItemData() : name("Unknown"), price(0.f) {};
+	ItemData(string newName, float newPrice, int newStock) :
+		name(newName), price(newPrice) {
+		if (stockMap.find(name) == stockMap.end()) {
+			stockMap[name] = newStock;
+		}
+	}
+
+	~ItemData() {};
+
 
 public:
 	string getName();
-	void setName(string newName);
-
 	float getPrice();
-	void setPrice(float newPrice);
 
-	int getStock();
-	void setStock(int newStock);
+	static int getStock(string ItemName);
 	void decrementStock();
 
 	QString makeFileString();
-
 };
+
+
 

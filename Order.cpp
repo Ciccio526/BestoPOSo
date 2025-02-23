@@ -31,8 +31,19 @@ void Order::removeItemInOrder(int index)
 	itemsInOrder.erase(itemsInOrder.begin() + index);
 }
 
+void Order::setCustomerName(string customer)
+{
+	customerName = customer;
+}
+
+string Order::getCustomerName()
+{
+	return customerName;
+}
+
 vector<ItemData> Order::getItems()
 {
 	return itemsInOrder;
 }
+
 

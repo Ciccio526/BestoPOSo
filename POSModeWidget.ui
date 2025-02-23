@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1084</width>
-    <height>766</height>
+    <width>1086</width>
+    <height>781</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -94,7 +94,7 @@
    <property name="geometry">
     <rect>
      <x>830</x>
-     <y>680</y>
+     <y>710</y>
      <width>251</width>
      <height>41</height>
     </rect>
@@ -134,7 +134,7 @@
     <rect>
      <x>170</x>
      <y>160</y>
-     <width>88</width>
+     <width>61</width>
      <height>51</height>
     </rect>
    </property>
@@ -160,7 +160,7 @@
     <rect>
      <x>20</x>
      <y>220</y>
-     <width>201</width>
+     <width>211</width>
      <height>21</height>
     </rect>
    </property>
@@ -205,6 +205,42 @@
    </property>
    <property name="text">
     <string>Exit POS Mode</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="errorLabel">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>760</y>
+     <width>251</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nameInputBox">
+   <property name="geometry">
+    <rect>
+     <x>872</x>
+     <y>680</y>
+     <width>211</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>835</x>
+     <y>680</y>
+     <width>49</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Name:</string>
    </property>
   </widget>
  </widget>

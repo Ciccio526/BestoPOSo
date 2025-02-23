@@ -14,6 +14,7 @@ private:
 	vector<ItemData> itemsInOrder;
 
 	int orderID;
+	string customerName;
 
 public:
 	void addItemToOrder(ItemData item);
@@ -22,6 +23,8 @@ public:
 	int getOrderSize();
 	ItemData getItemInOrder(int index);
 	void removeItemInOrder(int index);
+	void setCustomerName(string customer);
+	string getCustomerName();
 
 	vector<ItemData> getItems();
 };

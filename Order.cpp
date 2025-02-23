@@ -31,3 +31,8 @@ void Order::removeItemInOrder(int index)
 	itemsInOrder.erase(itemsInOrder.begin() + index);
 }
 
+vector<ItemData> Order::getItems()
+{
+	return itemsInOrder;
+}
+

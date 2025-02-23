@@ -28,6 +28,9 @@ private:
 	
 	void OnKeepFileClicked();
 	void OnDeleteFileClicked();
+	void onExitItemCreatorClicked();
+
+	void changeEvent(QEvent* event) override;
 
 	//CONTROLLER
 	bool bFileDecisionMade = false;

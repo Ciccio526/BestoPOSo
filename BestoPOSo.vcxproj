@@ -92,6 +92,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EndOfDayWidget.cpp" />
     <ClCompile Include="ItemButton.cpp" />
     <ClCompile Include="ItemData.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -104,6 +105,7 @@
     <QtMoc Include="BestoPOSo.h" />
     <ClCompile Include="BestoPOSo.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="EndOfDayWidget.ui" />
     <QtUic Include="NewItemWidget.ui" />
     <QtUic Include="POSModeWidget.ui" />
   </ItemGroup>
@@ -111,6 +113,7 @@
     <QtMoc Include="NewItemWidget.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="EndOfDayWidget.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="OrderManager.h" />
     <QtMoc Include="ItemButton.h" />

@@ -5,6 +5,7 @@
 #include <vector>
 #include "ui_BestoPOSo.h"
 #include "NewItemWidget.h"
+#include "EndOfDayWidget.h"
 #include "Menu.h"
 #include "Order.h"
 
@@ -21,8 +22,6 @@ public:
     // VARIABLES
     Menu* menuList;
 
-
-
 private:
 
     // WIDGETS
@@ -32,5 +31,8 @@ private:
 
     void OpenAddItemWindow();
     void OpenPOSWindow();
+    void OpenEndOfDayWindow();
+
+    void changeEvent(QEvent* event) override;
 
 };

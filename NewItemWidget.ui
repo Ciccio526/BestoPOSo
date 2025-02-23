@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>515</width>
-    <height>311</height>
+    <height>310</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -137,7 +137,20 @@
     </rect>
    </property>
    <property name="text">
-    <string>Append existing save file</string>
+    <string>Append/use existing save file</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exitItemCreatorButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>263</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Exit</string>
    </property>
   </widget>
  </widget>

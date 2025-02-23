@@ -16,10 +16,12 @@ public:
 	~POSModeWidget();
 
 private:
+	//Setup
 	POSModeWidgetClass ui;
 
 	void addItemButtons();
 
+	// Button Callbacks
 	void onItemButtonClicked();
 
 	void onNewOrderButtonClicked();
@@ -29,11 +31,17 @@ private:
 	void onDropdownIndexChanged(int index);
 
 	void onDeletePreviousOnClick();
+
 	void onDeleteIndexOnClick(int index);
 
+	void onExitPOSClicked();
+
+	// Color
 	void ToggleFlash();
 	void SetColorGray(QPushButton* button);
 
+	
+	// Data table
 	int row = 0;
 	int col = 0;
 
@@ -48,6 +56,8 @@ private:
 
 	int orderAmount;
 
+	//FUNCTIONS
+	void changeEvent(QEvent* event) override;
 
 	//CONTROLLERS
 	bool bEditOldOrder = false;

@@ -61,6 +61,9 @@
     <ClCompile Include="OrderManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EndOfDayWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="NewItemWidget.h">
@@ -72,12 +75,18 @@
     <QtMoc Include="ItemButton.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="EndOfDayWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="NewItemWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="POSModeWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="EndOfDayWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

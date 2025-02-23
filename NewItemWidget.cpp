@@ -17,6 +17,7 @@ NewItemWidget::NewItemWidget(QWidget *parent)
 	connect(ui.submitButton, &QPushButton::clicked, this, &NewItemWidget::CreateItem);
 	connect(ui.wipeSaveFileButton, &QPushButton::clicked, this, &NewItemWidget::OnDeleteFileClicked);
 	connect(ui.useSaveFileButton, &QPushButton::clicked, this, &NewItemWidget::OnKeepFileClicked);
+	connect(ui.exitItemCreatorButton, &QPushButton::clicked, this, &NewItemWidget::onExitItemCreatorClicked);
 
 	ui.itemNameInput->setEnabled(false);
 	ui.itemPriceInput->setEnabled(false);
@@ -132,4 +133,20 @@ void NewItemWidget::OnDeleteFileClicked()
 
 	ui.wipeSaveFileButton->hide();
 	ui.useSaveFileButton->hide();
+}
+
+void NewItemWidget::onExitItemCreatorClicked()
+{
+	this->close();
+}
+
+void NewItemWidget::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::WindowStateChange) {
+		if (this->windowState() && Qt::WindowFullScreen) {
+			this->setWindowState(Qt::WindowNoState);
+		}
+	}
+
+	QWidget::changeEvent(event);
 }

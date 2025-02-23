@@ -22,6 +22,8 @@ public:
 	int getOrderSize();
 	ItemData getItemInOrder(int index);
 	void removeItemInOrder(int index);
+
+	vector<ItemData> getItems();
 };
 
 

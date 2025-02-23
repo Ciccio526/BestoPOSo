@@ -20,6 +20,7 @@ POSModeWidget::POSModeWidget(QWidget *parent)
 	connect(ui.confirmOrderButton, &QPushButton::clicked, this, &POSModeWidget::onConfirmOrderButtonClicked);
 	connect(ui.deletePreviousItemButton, &QPushButton::clicked, this, &POSModeWidget::onDeletePreviousOnClick);
 	connect(ui.deleteIndexButton, &QPushButton::clicked, this, &POSModeWidget::onDeleteIndexOnClick);
+	connect(ui.exitPOSModeButton, &QPushButton::clicked, this, &POSModeWidget::onExitPOSClicked);
 
 	connect(ui.orderDropdown, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &POSModeWidget::onDropdownIndexChanged);
 
@@ -79,6 +80,7 @@ void POSModeWidget::onItemButtonClicked()
 	button->getItemData().decrementStock();
 
 	ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
+	ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
 
 	tableRow++;
 }
@@ -119,6 +121,7 @@ void POSModeWidget::onConfirmOrderButtonClicked()
 	subtotalPrice = 0.f;
 
 	ui.subtotalCountText->clear();
+	ui.totalCountText->clear();
 
 	ui.orderDropdown->setEnabled(true);
 
@@ -153,10 +156,11 @@ void POSModeWidget::onDropdownIndexChanged(int index)
 		ui.itemTable->update();
 
 		subtotalPrice += price;
-		ui.subtotalCountText->setText(QString::number(price));
 
 		tableRow++;
 	}
+		ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
+		ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
 }
 
 void POSModeWidget::onDeletePreviousOnClick()
@@ -165,6 +169,7 @@ void POSModeWidget::onDeletePreviousOnClick()
 	
 	subtotalPrice -= (currentOrder->getItemInOrder(currentOrder->getOrderSize()-1)).getPrice();
 	ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
+	ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
 
 	currentOrder->removeItemInOrder(currentOrder->getOrderSize() - 1);
 
@@ -181,14 +186,20 @@ void POSModeWidget::onDeletePreviousOnClick()
 void POSModeWidget::onDeleteIndexOnClick(int index)
 {
 	if ((!currentOrder) || (ui.indexSpinBox->value() > currentOrder->getOrderSize()) || (!currentOrder->getOrderSize() > 0)) return;
-
+	
 	subtotalPrice -= (currentOrder->getItemInOrder(ui.indexSpinBox->value() -1)).getPrice();
 	ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
+	ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
 
 	currentOrder->removeItemInOrder(ui.indexSpinBox->value() -1);
 	ui.itemTable->removeRow(ui.indexSpinBox->value() - 1);
 
 	tableRow--;
+}
+
+void POSModeWidget::onExitPOSClicked()
+{
+	this->close();
 }
 
 void POSModeWidget::ToggleFlash()
@@ -211,6 +222,17 @@ void POSModeWidget::SetColorGray(QPushButton* button)
 	QPalette palette = button->palette();
 	palette.setColor(QPalette::Button, Qt::darkGray);
 	button->setPalette(palette);
+}
+
+void POSModeWidget::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::WindowStateChange) {
+		if (this->windowState() && Qt::WindowFullScreen) {
+			this->setWindowState(Qt::WindowNoState);
+		}
+	}
+
+	QWidget::changeEvent(event);
 }
 
 

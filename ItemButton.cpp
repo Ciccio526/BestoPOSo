@@ -11,7 +11,7 @@ ItemButton::ItemButton(QWidget* parent, ItemData data)
 
 	setText(QString::fromStdString(itemData.getName()));
 	QFont font = this->font();
-	font.setPointSize(15);
+	font.setPointSize(13);
 	setFont(font);
 }
 

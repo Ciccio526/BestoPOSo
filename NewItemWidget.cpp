@@ -92,6 +92,8 @@ void NewItemWidget::OnKeepFileClicked()
 
 	if (!menuFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		ui.errorLabel->setText(QString("No file found... making new one"));
+		ui.useSaveFileButton->hide();
+		ui.wipeSaveFileButton->hide();
 		return;
 	}
 
@@ -129,6 +131,7 @@ void NewItemWidget::OnDeleteFileClicked()
 
 	if (menuFile.open(QIODevice::WriteOnly | QIODevice::Text)) { 
 		menuFile.remove();
+		Menu::GetInstance().menuItems.clear();
 	}
 
 	ui.wipeSaveFileButton->hide();

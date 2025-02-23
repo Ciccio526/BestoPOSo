@@ -75,6 +75,7 @@ void POSModeWidget::onItemButtonClicked()
 	ui.itemTable->setItem(tableRow, 0, new QTableWidgetItem(name));
 	ui.itemTable->setItem(tableRow, 1, new QTableWidgetItem(QString::number(price, 'f', 2)));
 	ui.itemTable->resizeRowsToContents();
+	ui.itemTable->resizeColumnsToContents();
 	ui.itemTable->update();
 
 	subtotalPrice += price;

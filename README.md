@@ -25,3 +25,6 @@ POS Mode:
 End of Day Mode:
   This is where our project comes to an end.  End of day mode requires no inputs by the user and presents the total sales from all of the orders made
   throughout the day.  
+
+
+Program was made using Qt for Visual Studio 2022

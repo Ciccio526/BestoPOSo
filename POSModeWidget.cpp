@@ -63,6 +63,11 @@ void POSModeWidget::onItemButtonClicked()
 	
 	QString name = QString::fromStdString(button->getItemData().getName());
 	float price = button->getItemData().getPrice();
+
+	if (button->getItemData().getStock(name.toStdString()) == 0) {
+		ui.errorLabel->setText(QString("Out of stock!"));
+		return;
+	}
 	
 
 	ui.itemTable->insertRow(tableRow);
@@ -80,7 +85,7 @@ void POSModeWidget::onItemButtonClicked()
 	button->getItemData().decrementStock();
 
 	if (button->getItemData().getStock(button->getItemData().getName()) == 0) {
-		button->setEnabled(false);
+		//button->setEnabled(false);
 		ui.errorLabel->setText(QString("Out of stock!"));
 	}
 
@@ -190,6 +195,7 @@ void POSModeWidget::onDeletePreviousOnClick()
 	ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
 	ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
 
+	currentOrder->getItemInOrder(currentOrder->getOrderSize() - 1).incrementStock();
 	currentOrder->removeItemInOrder(currentOrder->getOrderSize() - 1);
 
 	if (currentOrder->getOrderSize() == 0) {
@@ -210,7 +216,9 @@ void POSModeWidget::onDeleteIndexOnClick(int index)
 	ui.subtotalCountText->setText(QString::number(subtotalPrice, 'f', 2));
 	ui.totalCountText->setText(QString::number(subtotalPrice + (subtotalPrice * .06625), 'f', 2));
 
+	currentOrder->getItemInOrder(ui.indexSpinBox->value() - 1).incrementStock();
 	currentOrder->removeItemInOrder(ui.indexSpinBox->value() -1);
+	
 	ui.itemTable->removeRow(ui.indexSpinBox->value() - 1);
 
 	tableRow--;

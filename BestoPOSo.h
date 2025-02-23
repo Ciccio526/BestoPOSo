@@ -35,4 +35,6 @@ private:
 
     void changeEvent(QEvent* event) override;
 
+    bool bIsOtherWindowOpen = false;
+
 };

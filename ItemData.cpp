@@ -30,6 +30,11 @@ void ItemData::decrementStock()
 	}
 }
 
+void ItemData::incrementStock()
+{
+	stockMap[name] += 1;
+}
+
 QString ItemData::makeFileString()
 {
 	return QString(QString::fromStdString(name) + "," + QString::number(price, 'f', 2) + "," + QString::number(getStock(name)));

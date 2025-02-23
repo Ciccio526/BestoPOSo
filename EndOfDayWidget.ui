@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>450</height>
+    <width>426</width>
+    <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableWidget" name="dataTable">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>160</x>
      <y>10</y>
      <width>256</width>
-     <height>431</height>
+     <height>351</height>
     </rect>
    </property>
    <property name="editTriggers">
@@ -29,8 +29,8 @@
   <widget class="QPushButton" name="exitEndOfDayMode">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>400</y>
+     <x>10</x>
+     <y>320</y>
      <width>141</width>
      <height>41</height>
     </rect>

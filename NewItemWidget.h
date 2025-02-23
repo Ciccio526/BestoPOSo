@@ -17,6 +17,8 @@ public:
 	NewItemWidget(QWidget *parent = nullptr);
 	~NewItemWidget();
 
+	int i;
+
 private:
 	NewItemWidgetClass ui;
 

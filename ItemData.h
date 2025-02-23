@@ -32,6 +32,7 @@ public:
 
 	static int getStock(string ItemName);
 	void decrementStock();
+	void incrementStock();
 
 	QString makeFileString();
 };

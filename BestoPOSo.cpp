@@ -20,6 +20,7 @@ BestoPOSo::~BestoPOSo()
 
 void BestoPOSo::OpenAddItemWindow()
 {
+    bIsOtherWindowOpen = true;
     NewItemWidget* newItemWidget = new NewItemWidget();
     MainWindow.errorLabel->clear();
 

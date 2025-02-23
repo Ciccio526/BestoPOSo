@@ -1,5 +1,6 @@
 #include "BestoPOSo.h"
 #include <QtWidgets/QApplication>
+#include "Menu.h"
 
 int main(int argc, char *argv[])
 {
